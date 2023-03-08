@@ -21,6 +21,16 @@ func main() {
 	var scoreTwo float64 = 23345346345.4
 	scoreThree := 24353453.4
 
+	//initializing array variables. Arrays are fixed length lists of items of the same type.
+	//array variable with type
+	var arrOne [3]int = [3]int{1, 2, 3}
+	//array variable with inferred type
+	var arrTwo = [3]int{2, 3, 4}
+	//array variable with shorthand syntax
+	arrThree := [3]int{3, 4, 5}
+
+	fmt.Println(arrOne, arrTwo, arrThree, len(arrOne))
+
 	//printing variables to the console using fmt.Println
 	fmt.Println(nameOne, ageThree, nameTwo, ageOne, nameThree, ageTwo)
 	fmt.Println(scoreOne, scoreTwo, scoreThree)
@@ -38,5 +48,5 @@ func main() {
 
 	//using Sprintf to format and store the formatted string in a variable
 	var str = fmt.Sprintf("my name is %v, and I am %v years old \n", nameOne, ageThree)
-	fmt.Println("str:",str)
+	fmt.Println("str:", str)
 }
