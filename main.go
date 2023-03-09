@@ -70,9 +70,37 @@ func main() {
 	fmt.Println("sorted nameFour:", nameFour)
 
 	//searching the index of a value in a slice
-	index := sort.SearchInts(sliceOne, 20)
+	indexInt := sort.SearchInts(sliceOne, 20)
 	//printing the index of the value to the console
-	fmt.Println("index:", index)
+	fmt.Println("indexInt:", indexInt)
+
+	//searching the index of a value in a string slice
+	indexStr := sort.SearchStrings(nameFour, "God")
+	//printing the index of the value to the console
+	fmt.Println("indexStr:", indexStr)
+
+	//For loop
+	x := 0
+	for x < 2 {
+		fmt.Println("value of x is:", x)
+		x++
+	}
+	//another For loop
+	for i := 0; i < 2; i++ {
+		fmt.Println("value of i is:", i)
+	}
+	//For loop over a slice
+	for i := 0; i < len(nameFour); i++ {
+		fmt.Println(nameFour[i])
+	}
+	//For loop over a slice using range
+	for index, value := range nameFour {
+		fmt.Printf("index : %v, value : %v \n", index, value)
+	}
+	//If you do not want to use the index, you can use the blank identifier _
+	for _, value := range nameFour {
+		fmt.Printf("value : %v \n", value)
+	}
 
 	//using strings package to print to the console
 	fmt.Println(strings.Contains(nameTwo, "major"))
