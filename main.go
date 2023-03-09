@@ -60,7 +60,19 @@ func main() {
 
 	//using sort package to sort the slice. Sort is in-place, meaning it updates the original slice
 	sort.Ints(sliceOne)
+	//printing the sorted slice to the console
 	fmt.Println("sliceOne:", sliceOne)
+
+	//using sort package to sort string slices
+	nameFour := []string{"taye", "God", "see"}
+	sort.Strings(nameFour)
+	//printing the sorted slice to the console
+	fmt.Println("sorted nameFour:", nameFour)
+
+	//searching the index of a value in a slice
+	index := sort.SearchInts(sliceOne, 20)
+	//printing the index of the value to the console
+	fmt.Println("index:", index)
 
 	//using strings package to print to the console
 	fmt.Println(strings.Contains(nameTwo, "major"))
