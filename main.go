@@ -21,13 +21,26 @@ func main() {
 	var scoreTwo float64 = 23345346345.4
 	scoreThree := 24353453.4
 
-	//initializing array variables. Arrays are fixed length lists of items of the same type.
-	//array variable with type
+	/*initializing array variables. Arrays are fixed length lists of items of the same type.
+	array variable with type*/
 	var arrOne [3]int = [3]int{1, 2, 3}
 	//array variable with inferred type
 	var arrTwo = [3]int{2, 3, 4}
 	//array variable with shorthand syntax
 	arrThree := [3]int{3, 4, 5}
+
+	//update a value from the array
+	arrThree[1] = 10
+
+	//slices are like arrays but they are dynamic in size
+	var sliceOne = []int{9, 8, 4, 3}
+	//update a value from the slice
+	sliceOne[0] = 20
+	/*append a value to the slice 
+	append returns a new slice with the appended value
+	It does not update the slice, unless you assign the new returned
+	slice to be the updated slice as below*/
+	sliceOne = append(sliceOne, 5)
 
 	fmt.Println(arrOne, arrTwo, arrThree, len(arrOne))
 
