@@ -40,11 +40,45 @@ func areaOfCircle(r float64) float64 {
 }
 
 //slice
-var slice12 []string = []string {"tee", "taye", "mike"}
+var slice12 []string = []string{"tee", "taye", "mike"}
 
-//maps
+//map with key(string) and value(float64)
 var menu = map[string]float64{
 	"chicken": 150.00,
-	"beef": 200.50,
-	"fish": 100.70,
+	"beef":    200.50,
+	"fish":    100.70,
+}
+
+//structs. A struct is a collection of fields & represents a custom data type
+type bill struct {
+	name  string
+	items map[string]float64
+	tip   float64
+}
+
+//new bills
+func newBill(name string) bill {
+	b := bill{
+		name:  name,
+		items: map[string]float64{"chilli": 103.99, "rice": 499.00, "noddles": 100.00},
+		tip:   0,
+	}
+	return b
+}
+
+//format the bill. This is a method of the bill struct. It is a function that is attached to a struct.
+func (b bill) format() string {
+	fs := "Bill breakdown \n"
+	var total float64 = 0
+	//iterate over items
+	for k, v := range b.items {
+		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v)
+		total += v
+	}
+
+	/*total
+	the -25 in %-25v, adds 25 characters to the string*/
+	fs += fmt.Sprintf("%-25v ... $%0.2f \n", "Total:", total)
+
+	return fs
 }

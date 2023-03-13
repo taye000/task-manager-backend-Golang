@@ -130,6 +130,13 @@ func main() {
 	fmt.Println(menu)
 	fmt.Println(menu["chicken"])
 
+	//updating the value of a key in the map
+	menu["chicken"] = 102.99
+
+	//new bill function
+	myBill := newBill("Taye's bill")
+	fmt.Println(myBill.format())
+
 	/*looping through maps and printing to the console
 	k => key, v=> value*/
 	for k, v := range menu {
