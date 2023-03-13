@@ -5,6 +5,7 @@ fmt is used to print to the console
 strings is used to work with strings*/
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strings"
 )
@@ -114,6 +115,16 @@ func main() {
 		}
 		fmt.Printf("the value at position %v is %v \n", index, value)
 	}
+
+	//importing variables & functions from another file under the same package main
+	cycleNames(slice12, sayGreeting)
+	cycleNames(slice12, sayBye)
+	a1 := areaOfCircle(2.4)
+	//using formatted strings to format number of decimal places
+	fmt.Printf("area 1 is %0.3f", a1)
+	fmt.Println(math.Sqrt(16))
+	//using the return values from a function
+	fmt.Println(getInitials("taye oluwatobi"))
 
 	//using strings package to print to the console
 	fmt.Println(strings.Contains(nameTwo, "major"))
