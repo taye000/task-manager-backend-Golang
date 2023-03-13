@@ -126,6 +126,16 @@ func main() {
 	//using the return values from a function
 	fmt.Println(getInitials("taye oluwatobi"))
 
+	//printing the imported map to the console
+	fmt.Println(menu)
+	fmt.Println(menu["chicken"])
+
+	/*looping through maps and printing to the console
+	k => key, v=> value*/
+	for k, v := range menu {
+		fmt.Println(k, " ", v)
+	}
+
 	//using strings package to print to the console
 	fmt.Println(strings.Contains(nameTwo, "major"))
 	/*using strings package Replace method to replace a string with another string

@@ -39,4 +39,12 @@ func areaOfCircle(r float64) float64 {
 	return math.Pi * r * r
 }
 
+//slice
 var slice12 []string = []string {"tee", "taye", "mike"}
+
+//maps
+var menu = map[string]float64{
+	"chicken": 150.00,
+	"beef": 200.50,
+	"fish": 100.70,
+}
