@@ -102,6 +102,19 @@ func main() {
 		fmt.Printf("value : %v \n", value)
 	}
 
+	//using conditional statements
+	for index, value := range nameFour {
+		if index == 0 {
+			fmt.Println("continuing at position", index)
+			continue
+		}
+		if index > 1 {
+			fmt.Println("breaking at position", index)
+			break
+		}
+		fmt.Printf("the value at position %v is %v \n", index, value)
+	}
+
 	//using strings package to print to the console
 	fmt.Println(strings.Contains(nameTwo, "major"))
 	/*using strings package Replace method to replace a string with another string
