@@ -137,6 +137,9 @@ func main() {
 	myBill := newBill("Taye's bill")
 	fmt.Println(myBill.format())
 
+	//update tip
+	myBill.updateTip(10.0)
+
 	/*looping through maps and printing to the console
 	k => key, v=> value*/
 	for k, v := range menu {

@@ -75,10 +75,23 @@ func (b bill) format() string {
 		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v)
 		total += v
 	}
+	/*add tip
+	the -25 in %-25v, adds 25 characters to the string*/
+	fs += fmt.Sprintf("%-25v ... $%0.2f \n", "Tip:", b.tip)
 
 	/*total
 	the -25 in %-25v, adds 25 characters to the string*/
 	fs += fmt.Sprintf("%-25v ... $%0.2f \n", "Total:", total)
 
 	return fs
+}
+
+//update the tip. Another method of the bill struct
+func (b bill) updateTip(tip float64) {
+	b.tip = tip
+}
+
+//add items to the bill. Another method of the bill struct
+func (b bill) addItem (name string, price float64) {
+	b.items[name] = price
 }
