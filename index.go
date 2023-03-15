@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
 	"strings"
 )
 
@@ -60,7 +62,7 @@ type bill struct {
 func newBill(name string) bill {
 	b := bill{
 		name:  name,
-		items: map[string]float64{"chilli": 103.99, "rice": 499.00, "noddles": 100.00},
+		items: map[string]float64{},
 		tip:   0,
 	}
 	return b
@@ -81,17 +83,66 @@ func (b bill) format() string {
 
 	/*total
 	the -25 in %-25v, adds 25 characters to the string*/
-	fs += fmt.Sprintf("%-25v ... $%0.2f \n", "Total:", total)
+	fs += fmt.Sprintf("%-25v ... $%0.2f \n", "Total:", total+b.tip)
 
 	return fs
 }
 
 //update the tip. Another method of the bill struct
-func (b bill) updateTip(tip float64) {
+func (b *bill) updateTip(tip float64) {
 	b.tip = tip
 }
 
 //add items to the bill. Another method of the bill struct
-func (b bill) addItem (name string, price float64) {
+func (b bill) addItem(name string, price float64) {
 	b.items[name] = price
+}
+
+//helper function to take any input from the user via terminal(stdin)
+func takeInput(prompt string, r *bufio.Reader) (string, error) {
+	//print the prompt
+	fmt.Print(prompt)
+	//read the input from the terminal
+	input, err := r.ReadString('\n')
+	//remove the new line character or any trailing white spaces and return the input
+	return strings.TrimSpace(input), err
+}
+
+//function to add items to the bill
+func promptOptions(b bill) {
+	//create a new reader
+	reader := bufio.NewReader(os.Stdin)
+
+	//prompt the user to choose an option
+	opt, _ := takeInput("Choose option (a - add item, s - Save bill, t - add tip): ", reader)
+
+	//switch statement to handle the different options
+	switch opt {
+	case "a":
+		name, _ := takeInput("Enter item name: ", reader)
+		price, _ := takeInput("Enter item price: ", reader)
+		fmt.Println(name, price)
+	case "s":
+		fmt.Println("You chose s")
+	case "t":
+		tip, _ := takeInput("Enter tip amount: ", reader)
+		fmt.Println(tip)
+	default: //default option, when the user enters an invalid option
+		fmt.Println("Not a valid option")
+		promptOptions(b) //call the function again to prompt the user to choose an option
+	}
+}
+
+//function to take input from the user via terminal(stdin)
+func createBill() bill {
+	reader := bufio.NewReader(os.Stdin)
+
+	//create a new bill using the newBill function and the input from the user
+	name, _ := takeInput("Create your bill, name: ", reader)
+
+	fmt.Printf("Created the bill - %v \n", name)
+
+	b := newBill(name)
+
+	return b
 }

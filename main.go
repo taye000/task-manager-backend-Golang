@@ -135,10 +135,19 @@ func main() {
 
 	//new bill function
 	myBill := newBill("Taye's bill")
-	fmt.Println(myBill.format())
-
+	//add items to the bill
+	myBill.addItem("chilli", 103.99)
+	myBill.addItem("rice", 499.00)
+	myBill.addItem("noddles", 100.00)
 	//update tip
 	myBill.updateTip(10.0)
+	//print the updated & formatted bill
+	fmt.Println(myBill.format())
+
+	//call the createBill function
+	myNewBill := createBill()
+	promptOptions(myNewBill)
+	fmt.Println("myNewBill:", myNewBill)
 
 	/*looping through maps and printing to the console
 	k => key, v=> value*/
