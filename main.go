@@ -133,22 +133,6 @@ func main() {
 	//updating the value of a key in the map
 	menu["chicken"] = 102.99
 
-	//new bill function
-	myBill := newBill("Taye's bill")
-	//add items to the bill
-	myBill.addItem("chilli", 103.99)
-	myBill.addItem("rice", 499.00)
-	myBill.addItem("noddles", 100.00)
-	//update tip
-	myBill.updateTip(10.0)
-	//print the updated & formatted bill
-	fmt.Println(myBill.format())
-
-	//call the createBill function
-	myNewBill := createBill()
-	promptOptions(myNewBill)
-	fmt.Println("myNewBill:", myNewBill)
-
 	/*looping through maps and printing to the console
 	k => key, v=> value*/
 	for k, v := range menu {
@@ -187,4 +171,22 @@ func main() {
 	//using Sprintf to format and store the formatted string in a variable
 	var str = fmt.Sprintf("my name is %v, and I am %v years old \n", nameOne, ageThree)
 	fmt.Println("str:", str)
+
+
+	//new bill function to create a new bill
+	myBill := newBill("Taye's bill")
+	//add items to the bill
+	myBill.addItem("chilli", 103.99)
+	myBill.addItem("rice", 499.00)
+	myBill.addItem("noddles", 100.00)
+	//update tip
+	myBill.updateTip(10.0)
+	//print the updated & formatted bill
+	fmt.Println(myBill.format())
+
+	//call the createBill function
+	myNewBill := createBill()
+	promptOptions(myNewBill)
+	fmt.Println("myNewBill:", myNewBill)
+
 }

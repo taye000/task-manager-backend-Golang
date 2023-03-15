@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -121,7 +122,17 @@ func promptOptions(b bill) {
 	case "a":
 		name, _ := takeInput("Enter item name: ", reader)
 		price, _ := takeInput("Enter item price: ", reader)
-		fmt.Println(name, price)
+
+		//convert price string to float64
+		p, err := strconv.ParseFloat(price, 64)
+		//check if there is an error
+		if err != nil {
+			fmt.Println("Input has to be a number")
+			promptOptions(b)
+		}
+		b.addItem(name, p)
+
+		fmt.Printf("item %v added, with price %v",name, p)
 	case "s":
 		fmt.Println("You chose s")
 	case "t":
