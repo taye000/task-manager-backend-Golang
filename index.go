@@ -71,11 +71,11 @@ func newBill(name string) bill {
 
 //format the bill. This is a method of the bill struct. It is a function that is attached to a struct.
 func (b bill) format() string {
-	fs := "Bill breakdown \n"
+	fs := "Bill Breakdown \n"
 	var total float64 = 0
 	//iterate over items
 	for k, v := range b.items {
-		fs += fmt.Sprintf("%-25v ...$%v \n", k+":", v)
+		fs += fmt.Sprintf("%-25v ... $%v \n", k+":", v)
 		total += v
 	}
 	/*add tip
@@ -125,21 +125,47 @@ func promptOptions(b bill) {
 
 		//convert price string to float64
 		p, err := strconv.ParseFloat(price, 64)
+
 		//check if there is an error
 		if err != nil {
 			fmt.Println("Input has to be a number")
+
+			//call the function again to prompt the user to choose an option
 			promptOptions(b)
 		}
+		//update the bill items
 		b.addItem(name, p)
 
-		fmt.Printf("item %v added, with price %v",name, p)
+		fmt.Printf("item %v added, with price %v \n", name, p)
+
+		//call the function again to prompt the user to choose an option
+		promptOptions(b)
 	case "s":
-		fmt.Println("You chose s")
+		b.save()
+		fmt.Println("Bill saved to file. \n", b.name)
 	case "t":
 		tip, _ := takeInput("Enter tip amount: ", reader)
-		fmt.Println(tip)
+
+		//convert price string to float64
+		t, err := strconv.ParseFloat(tip, 64)
+
+		//check if there is an error
+		if err != nil {
+			fmt.Println("Input has to be a number")
+			//call the function again to prompt the user to choose an option
+			promptOptions(b)
+		}
+		//update the bill tip
+		b.updateTip(t)
+
+		fmt.Printf("Tip updated: %v \n", t)
+
+		//call the function again to prompt the user to choose an option
+		promptOptions(b)
+
 	default: //default option, when the user enters an invalid option
 		fmt.Println("Not a valid option")
+
 		promptOptions(b) //call the function again to prompt the user to choose an option
 	}
 }
@@ -156,4 +182,18 @@ func createBill() bill {
 	b := newBill(name)
 
 	return b
+}
+
+//function to save bill to file in the 'bills' folder
+func (b *bill) save() {
+	//format the bill to a string
+	data := []byte(b.format())
+
+	//create a new file in the bills folder
+	err := os.WriteFile("bills/"+b.name+".txt", data, 0644)
+
+	//check for errors
+	if err != nil {
+		panic(err)
+	}
 }

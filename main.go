@@ -186,7 +186,8 @@ func main() {
 
 	//call the createBill function
 	myNewBill := createBill()
+
+	//call the promptOptions function
 	promptOptions(myNewBill)
-	fmt.Println("myNewBill:", myNewBill)
 
 }

@@ -1,0 +1,5 @@
+Bill breakdown 
+noodles:                  ...$200 
+meatballs:                ...$300 
+Tip:                      ... $100.00 
+Total:                    ... $600.00 
